@@ -45,6 +45,7 @@ $vetorRegistros = $resultadoSql->fetch_all(MYSQLI_ASSOC);
     <title>Lista de Clientes</title>
   </head>
   <body>
+    <div class="container">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Lista de Clientes</a>
@@ -128,7 +129,10 @@ if (isset($_GET['msg'])) {
                         <form action="formCliente.php" method="POST">
                         <input type="number" name="id" value="<?=$key['id'];?>" hidden="true">
                         <input type="number" hidden="true" name="fez" value="1">
-                        <button type="submit">EDITAR</button>
+                        <button type="submit" style="background-color: green;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+</svg></button>
                        </form>
               
                </td> 
@@ -136,7 +140,9 @@ if (isset($_GET['msg'])) {
                         <form action="deleteCliente.php" method="POST">
                         <input type="number" name="id" value="<?=$key['id'];?>" hidden="true">
                         <input type="number" hidden="true" name="fez" value="1">
-                        <button type="submit">EXCLUIR</button>
+                        <button type="submit" style="background-color: red;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+  <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+</svg></button>
                        </form>
               
                </td> 
@@ -144,5 +150,6 @@ if (isset($_GET['msg'])) {
   <?php  }?>
   </tbody>
 </table>
+</div>
   </body>
 </html>
