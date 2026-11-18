@@ -17,3 +17,30 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-action]');
 $('exportBackup').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='agenda-pro-backup.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 $('importBackup').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>2_000_000)throw Error('Arquivo muito grande.');const parsed=JSON.parse(await file.text());const v=parsed?.data;if(parsed.version!==1||!v||!['clients','services','appointments'].every(k=>Array.isArray(v[k]))||v.clients.length>10000||v.services.length>10000||v.appointments.length>50000)throw Error('Formato de backup inválido.');if(!confirm('Substituir todos os dados locais pelos dados do backup?'))return;data=v;save();render();notify('Backup restaurado neste navegador.')}catch(err){notify('Falha ao importar: '+err.message)}finally{e.target.value=''}});
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+
+let installPrompt;
+const installButton = document.getElementById('installApp');
+const installHelp = document.getElementById('installHelp');
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault();
+  installPrompt = event;
+  installButton.hidden = false;
+  installHelp.hidden = true;
+});
+installButton.addEventListener('click', async () => {
+  if (!installPrompt) return;
+  const prompt = installPrompt;
+  installPrompt = null;
+  installButton.hidden = true;
+  await prompt.prompt();
+  await prompt.userChoice;
+  installHelp.hidden = false;
+});
+window.addEventListener('appinstalled', () => {
+  installButton.hidden = true;
+  installHelp.textContent = 'Aplicativo instalado neste dispositivo.';
+  installHelp.hidden = false;
+});
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  document.getElementById('installPanel').hidden = true;
+}
