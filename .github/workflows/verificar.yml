@@ -1,0 +1,24 @@
+name: Verificar Agenda Pro
+on:
+  push:
+    branches: [modernizacao-segura]
+  pull_request:
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check nova-versao/app.js
+      - run: node --check nova-versao/sw.js
+      - run: |
+          test -s nova-versao/index.html
+          test -s nova-versao/style.css
+          test -s nova-versao/manifest.webmanifest
+          test -s nova-versao/privacidade.html
+          node -e "JSON.parse(require('fs').readFileSync('nova-versao/manifest.webmanifest','utf8'))"
