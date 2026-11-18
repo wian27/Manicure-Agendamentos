@@ -1,0 +1,17 @@
+{
+  "name": "Agenda Pro — Demonstração",
+  "short_name": "Agenda Pro",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf7fb",
+  "theme_color": "#743f73",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
