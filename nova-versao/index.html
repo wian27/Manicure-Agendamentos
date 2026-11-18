@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#743f73"><title>Agenda Pro — Demonstração</title><link rel="stylesheet" href="style.css"></head>
+<body><header><div class="brand">✦ Agenda Pro <small>DEMONSTRAÇÃO LOCAL</small></div><nav><button data-tab="agenda" class="active">Agenda</button><button data-tab="clientes">Clientes</button><button data-tab="servicos">Serviços</button></nav></header>
+<main><section class="intro"><div><h1>Seu atendimento, organizado.</h1><p>Controle clientes, serviços e horários em um só lugar.</p></div><span id="today"></span></section>
+<div id="notice" role="status" aria-live="polite"></div>
+<section id="agenda" class="panel"><div class="heading"><h2>Agendamentos</h2><button class="primary" id="newAppointment">+ Novo horário</button></div><label>Filtrar por dia <input id="filterDate" type="date"></label><div id="appointmentList" class="cards"></div></section>
+<section id="clientes" class="panel hidden"><div class="heading"><h2>Clientes</h2><button class="primary" id="newClient">+ Novo cliente</button></div><div id="clientList" class="cards"></div></section>
+<section id="servicos" class="panel hidden"><div class="heading"><h2>Serviços</h2><button class="primary" id="newService">+ Novo serviço</button></div><div id="serviceList" class="cards"></div></section>
+<p class="disclaimer">Versão demonstrativa: dados salvos apenas neste navegador. Não utilize dados pessoais reais até a integração com login e banco seguro.</p></main>
+<dialog id="editor"><form id="editForm"><h2 id="formTitle"></h2><div id="fields"></div><div class="actions"><button type="button" id="cancel">Cancelar</button><button type="submit" class="primary">Salvar</button></div></form></dialog>
+<script src="app.js" defer></script></body></html>
